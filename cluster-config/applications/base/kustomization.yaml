@@ -7,3 +7,4 @@ resources:
 - container-security-operator.yaml
 - sealed-secrets.yaml
 - rhacm-operator.yaml
+- rhacm-instance.yaml
