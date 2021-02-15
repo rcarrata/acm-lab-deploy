@@ -8,7 +8,7 @@ spec:
     server: https://kubernetes.default.svc
   project: cluster-config
   source:
-    path: manifests/rhacm-instance/overlays/base
+    path: manifests/rhacm-instance/overlays/basic
     repoURL: https://github.com/ocp-tigers/acm-lab-deploy
     targetRevision: master
   syncPolicy:
@@ -21,6 +21,6 @@ spec:
         namespace: argocd
         server: https://kubernetes.default.svc
       source:
-        path: manifests/rhacm-instance/overlays/base
+        path: manifests/rhacm-instance/overlays/basic
         repoURL: https://github.com/ocp-tigers/acm-lab-deploy
         targetRevision: master
