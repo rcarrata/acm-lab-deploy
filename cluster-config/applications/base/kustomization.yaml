@@ -6,4 +6,4 @@ resources:
 #- rbac.yaml
 - container-security-operator.yaml
 - sealed-secrets.yaml
-- rhacm.yaml
+- rhacm-operator.yaml

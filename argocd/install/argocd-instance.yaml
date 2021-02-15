@@ -21,7 +21,3 @@ spec:
   image: argoproj/argocd
   rbac:
     defaultPolicy: "role:admin"
-  initialRepositories: |
-    - name: examples
-      type: git
-      url: https://github.com/christianh814/gitops-examples

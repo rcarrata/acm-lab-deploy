@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: rhacm
+  name: rhacm-instance
 spec:
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
   project: cluster-config
   source:
-    path: manifests/rhacm-operator/base
+    path: manifests/rhacm-instance/overlays/base
     repoURL: https://github.com/ocp-tigers/acm-lab-deploy
     targetRevision: master
   syncPolicy:
@@ -21,6 +21,6 @@ spec:
         namespace: argocd
         server: https://kubernetes.default.svc
       source:
-        path: manifests/rhacm-operator/base
+        path: manifests/rhacm-instance/overlays/base
         repoURL: https://github.com/ocp-tigers/acm-lab-deploy
         targetRevision: master
