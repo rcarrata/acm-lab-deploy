@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ArgoCD
+metadata:
+  name: argocd
+  namespace: argocd
+  annotations:
+        argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource
+spec:
+  server:
+    route:
+      enabled: true
+  dex:
+    openShiftOAuth: true
+    image: quay.io/redhat-cop/dex
+    version: v2.22.0-openshift
+  resourceCustomizations: |
+    route.openshift.io/Route:
+      ignoreDifferences: |
+        jsonPointers:
+        - /spec/host
+  image: argoproj/argocd
+  rbac:
+    defaultPolicy: "role:admin"
+  initialRepositories: |
+    - name: examples
+      type: git
+      url: https://github.com/christianh814/gitops-examples
