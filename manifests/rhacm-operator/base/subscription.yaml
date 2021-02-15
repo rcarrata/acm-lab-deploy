@@ -2,6 +2,7 @@ apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
   name: acm-operator-subscription
+  namespace: open-cluster-management
 spec:
   sourceNamespace: openshift-marketplace
   source: redhat-operators
