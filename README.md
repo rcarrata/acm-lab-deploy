@@ -29,5 +29,19 @@ oc apply -k https://github.com/ocp-tigers/acm-lab-deploy/acm-lab-deploy/config/o
 ### Apply the Sealed Secrets Key
 
 ```
+export PRIVATEKEY_SEALED="assets/sealed-tls.key"
+export PUBLICKEY_SEALED="assets/sealed-tls.crt"
+export NS_SEALED_SEALED="kube-system"
+export SECRETNAME_SEALED="sealedkeys"
+
+oc delete secret -n $NAMESPACE -l sealedsecrets.bitnami.com/sealed-secrets-key
+oc -n "$NAMESPACE" create secret tls "$SECRETNAME" --cert="$PUBLICKEY" --key="$PRIVATEKEY"
+oc -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-secrets-key=active
+sleep 10
+```
+
+### Configure the ACM Lab Resources
+
+```
 oc apply -k https://github.com/ocp-tigers/acm-lab-deploy/acm-lab-config/config/overlays/default
 ```
