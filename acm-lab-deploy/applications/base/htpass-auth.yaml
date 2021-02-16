@@ -1,26 +1,26 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: rhacm-instance
+  name: config-authentication
 spec:
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
-  project: cluster-config
+  project: acm-lab-deploy
   source:
-    path: manifests/rhacm-instance/overlays/basic
+    path: manifests/auth-htpass/base
     repoURL: https://github.com/ocp-tigers/acm-lab-deploy
     targetRevision: master
   syncPolicy:
     automated:
-      prune: false
-      selfHeal: false
+      prune: true
+      selfHeal: true
   sync:
     comparedTo:
       destination:
         namespace: argocd
         server: https://kubernetes.default.svc
       source:
-        path: manifests/rhacm-instance/overlays/basic
+        path: manifests/auth-htpass/base
         repoURL: https://github.com/ocp-tigers/acm-lab-deploy
         targetRevision: master

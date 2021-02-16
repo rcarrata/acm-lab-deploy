@@ -6,7 +6,7 @@ spec:
   destination:
     namespace: argocd
     server: https://kubernetes.default.svc
-  project: cluster-config
+  project: acm-lab-deploy
   source:
     path: manifests/rbac/base
     repoURL: https://github.com/christianh814/openshift-cluster-config

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: cluster-config
+  name: acm-lab-config
 spec:
   clusterResourceWhitelist:
   - group: '*'
