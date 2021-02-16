@@ -23,5 +23,7 @@ oc get route argocd-server -n argocd -o jsonpath='{.spec.host}{"\n"}'
 ### Deploying the Resources for the RH Demo
 
 ```
-oc apply -k https://github.com/ocp-tigers/acm-lab-deploy/cluster-config/config/overlays/default
+oc apply -k https://github.com/ocp-tigers/acm-lab-deploy/acm-lab-deploy/config/overlays/default
 ```
+
+
