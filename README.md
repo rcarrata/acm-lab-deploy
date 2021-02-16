@@ -1,8 +1,16 @@
-# RH ACM Deployment and Configuration
+# RH ACM Deployment and Configuration 🧙‍
 
 Repo to deploy and configure an RHACM lab
 
-### Installing ArgoCD
+## Automatic Deployment
+
+```
+./deploy.sh
+```
+
+## Step by Step
+
+### 1. Installing ArgoCD
 
 ```
 until oc apply -k https://github.com/ocp-tigers/acm-lab-deploy/argocd/install; do sleep 2; done
@@ -20,13 +28,13 @@ To get your argocd route (where you can login)
 oc get route argocd-server -n argocd -o jsonpath='{.spec.host}{"\n"}'
 ```
 
-### Deploying the ACM Lab Resources
+### 2. Deploying the ACM Lab Resources
 
 ```
 oc apply -k https://github.com/ocp-tigers/acm-lab-deploy/acm-lab-deploy/config/overlays/default
 ```
 
-### Apply the Sealed Secrets Key
+### 3. Apply the Sealed Secrets Key
 
 ```
 export PRIVATEKEY_SEALED="assets/sealed-tls.key"
@@ -40,7 +48,7 @@ oc -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-s
 sleep 10
 ```
 
-### Configure the ACM Lab Resources
+### 4. Configure the ACM Lab Resources
 
 ```
 oc apply -k https://github.com/ocp-tigers/acm-lab-deploy/acm-lab-config/config/overlays/default
