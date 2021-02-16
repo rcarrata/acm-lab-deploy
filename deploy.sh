@@ -20,3 +20,4 @@ oc -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-s
 sleep 10
 
 ## Configure the ACM Lab
+oc apply -k acm-lab-config/config/overlays/default
