@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
 - container-security-operator.yaml
 - rhacm-instance.yaml
+- letsencrypt-certs.yaml

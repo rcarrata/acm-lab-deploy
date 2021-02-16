@@ -20,10 +20,14 @@ To get your argocd route (where you can login)
 oc get route argocd-server -n argocd -o jsonpath='{.spec.host}{"\n"}'
 ```
 
-### Deploying the Resources for the RH Demo
+### Deploying the ACM Lab Resources
 
 ```
 oc apply -k https://github.com/ocp-tigers/acm-lab-deploy/acm-lab-deploy/config/overlays/default
 ```
 
+### Apply the Sealed Secrets Key
 
+```
+oc apply -k https://github.com/ocp-tigers/acm-lab-deploy/acm-lab-config/config/overlays/default
+```
