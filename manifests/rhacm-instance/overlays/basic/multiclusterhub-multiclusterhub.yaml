@@ -7,3 +7,4 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource
 spec:
   availabilityConfig: Basic
+  imagePullSecret: pull-secret

@@ -43,8 +43,8 @@ export NS_SEALED_SEALED="kube-system"
 export SECRETNAME_SEALED="sealedkeys"
 
 oc delete secret -n $NS_SEALED_SEALED -l sealedsecrets.bitnami.com/sealed-secrets-key
-oc -n "$NS_SEALED_SEALED" create secret tls "$SECRETNAME" --cert="$PUBLICKEY" --key="$PRIVATEKEY"
-oc -n "$NS_SEALED_SEALED" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-secrets-key=active
+oc -n "$NS_SEALED_SEALED" create secret tls "$SECRETNAME_SEALED" --cert="$PUBLICKEY_SEALED" --key="$PRIVATEKEY_SEALED"
+oc -n "$NS_SEALED_SEALED" label secret "$SECRETNAME_SEALED" sealedsecrets.bitnami.com/sealed-secrets-key=active
 sleep 10
 ```
 

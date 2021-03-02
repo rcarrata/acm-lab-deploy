@@ -3,4 +3,3 @@ kind: Kustomization
 
 resources:
 - acm-lab-deploy-project.yaml
-- acm-lab-config-project.yaml
