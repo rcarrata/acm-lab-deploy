@@ -6,4 +6,3 @@ resources:
 #- rbac.yaml
 - sealed-secrets.yaml
 - rhacm-operator.yaml
-- rhacm-instance.yaml
