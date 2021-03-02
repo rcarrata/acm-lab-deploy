@@ -1,2 +1,4 @@
 assets/sealed-tls.key
 assets/cloud-dns-credentials-unsealed.yaml
+manifests/.dockerconfigjson
+
