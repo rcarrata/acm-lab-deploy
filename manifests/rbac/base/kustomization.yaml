@@ -5,4 +5,3 @@ resources:
 - admin-group.yaml
 - cluster-role-binding.yaml
 - developer-group.yaml
-- marketing-group.yaml
