@@ -123,3 +123,5 @@ This step will deploy the following resources for the demo:
 * RHACM Observability
 
 <img align="center" width="550" src="argo-acm-lab-config.png">
+
+<img align="center" width="550" src="argo-acm-lab-results.png">
