@@ -1,0 +1,20 @@
+apiVersion: observability.open-cluster-management.io/v1beta1
+kind: MultiClusterObservability
+metadata:
+  name: observability
+spec:
+  availabilityConfig: High
+  imagePullPolicy: Always
+  imagePullSecret: pull-secret
+  observabilityAddonSpec:
+    enableMetrics: true
+    interval: 60
+  retentionResolution1h: 30d
+  retentionResolution5m: 14d
+  retentionResolutionRaw: 5d
+  storageConfigObject:
+    metricObjectStorage:
+      key: thanos.yaml
+      name: thanos-object-storage
+    statefulSetSize: 10Gi
+    statefulSetStorageClass: gp2
