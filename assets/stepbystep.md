@@ -73,10 +73,12 @@ export AWS_DEFAULT_REGION=eu-west-1
 Generate the Thanos Bucket for the Observability in RHACM:
 
 ```
-aws s3api create-bucket --bucket obs-thanos --region $AWS_DEFAULT_REGION --create-bucket-configuration LocationConstraint=$AWS_DEFAULT_REGION
 export S3_BUCKET="obs-thanos"
+aws s3api create-bucket --bucket $S3_BUCKET --region $AWS_DEFAULT_REGION --create-bucket-configuration LocationConstraint=$AWS_DEFAULT_REGION
 export S3_ENDPOINT="s3.$AWS_DEFAULT_REGION.amazonaws.com"
 ```
+
+NOTE: be careful because sometimes the bucket exists and you need to specify another, or use the AWS creds to access them.
 
 Then add the obs-secret as SealedSecret in the proper manifest folder:
 
