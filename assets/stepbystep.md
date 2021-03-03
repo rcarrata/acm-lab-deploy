@@ -116,4 +116,10 @@ git push
 oc apply -k https://github.com/ocp-tigers/acm-lab-deploy/acm-lab-config/config/overlays/default
 ```
 
+This step will deploy the following resources for the demo:
 
+* RHACM Instance Deployment
+* Container Security Operator
+* RHACM Observability
+
+<img align="center" width="550" src="argo-acm-lab-.png">
