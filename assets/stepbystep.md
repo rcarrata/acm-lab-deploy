@@ -32,7 +32,7 @@ This step will deploy the following resources for the demo:
 * RBAC
 * RHACM-Operator
 
-<img align="center" width="350" src="../assets/argo-acm-lab-deploy.jpg">
+<img align="center" width="350" src="argo-acm-lab-deploy.jpg">
 
 ### 3. Apply the Sealed Secrets Key
 
