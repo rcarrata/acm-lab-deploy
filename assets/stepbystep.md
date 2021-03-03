@@ -68,7 +68,7 @@ export AWS_DEFAULT_REGION=eu-west-1
 
 ### 5. Configure the bucket for Observability
 
-Generate the Thanos Bucket for the Observability ACM stage
+Generate the Thanos Bucket for the Observability in RHACM
 
 ```
 aws s3api create-bucket --bucket obs-thanos --region $AWS_DEFAULT_REGION --create-bucket-configuration LocationConstraint=$AWS_DEFAULT_REGION
@@ -84,9 +84,25 @@ kubeseal --cert "${PUBLICKEY_SEALED}" -o yaml --scope cluster-wide < assets/obs-
 Do the changes in the gitOps way:
 
 ```
-git commit -m "added new obs bucket"
+git commit -am "added new obs bucket"
+git push
+```
 
-### 6. Configure the ACM Lab Resources
+### 6. Configure the letsencrypt Certificates
+
+```
+envsubst < assets/cloud-dns-credentials.yaml.tpl > assets/cloud-dns-credentials.yaml
+kubeseal --cert "${PUBLICKEY_SEALED}" -o yaml --scope cluster-wide < assets/cloud-dns-credentials.yaml > manifests/letsencrypt-certs/base/cloud-dns-credentials.yaml
+```
+
+Do the changes in the gitOps way:
+
+```
+git commit -am "added new cloud dns credentials"
+git push
+```
+
+### 7. Configure the ACM Lab Resources
 
 ```
 oc apply -k https://github.com/ocp-tigers/acm-lab-deploy/acm-lab-config/config/overlays/default
