@@ -32,6 +32,8 @@ This step will deploy the following resources for the demo:
 * RBAC
 * RHACM-Operator
 
+<img align="center" width="350" src="assets/argo-acm-lab-deploy.jpg">
+
 ### 3. Apply the Sealed Secrets Key
 
 For avoid that the Sealed Secrets generates an internal PKI, you need to provide the sealed-tls.crt/key  pairs. Obviously for security purposes the private key is not in this repo :)
@@ -68,13 +70,15 @@ export AWS_DEFAULT_REGION=eu-west-1
 
 ### 5. Configure the bucket for Observability
 
-Generate the Thanos Bucket for the Observability in RHACM
+Generate the Thanos Bucket for the Observability in RHACM:
 
 ```
 aws s3api create-bucket --bucket obs-thanos --region $AWS_DEFAULT_REGION --create-bucket-configuration LocationConstraint=$AWS_DEFAULT_REGION
 export S3_BUCKET="obs-thanos"
 export S3_ENDPOINT="s3.$AWS_DEFAULT_REGION.amazonaws.com"
 ```
+
+Then add the obs-secret as SealedSecret in the proper manifest folder:
 
 ```
 envsubst < assets/obs-secret.yaml.tpl > assets/obs-secret.yaml
@@ -89,6 +93,8 @@ git push
 ```
 
 ### 6. Configure the letsencrypt Certificates
+
+Add the AWS creds into the cloud dns credentials file and sealed with Sealed Secrets:
 
 ```
 envsubst < assets/cloud-dns-credentials.yaml.tpl > assets/cloud-dns-credentials.yaml
