@@ -5,4 +5,5 @@ resources:
 - container-security-operator.yaml
 - rhacm-instance.yaml
 - rhacm-observability.yaml
+- rhacm-policies.yaml
 #- letsencrypt-certs.yaml # TODO: acme.sh not working
