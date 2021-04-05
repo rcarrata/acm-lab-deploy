@@ -6,3 +6,5 @@ namespace: argocd
 bases:
 - ../../../applications/full
 - ../../../projects/base
+
+
