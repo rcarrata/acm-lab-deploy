@@ -43,12 +43,13 @@ Bring your own certs and exported from here:
 ```
 export PRIVATEKEY_SEALED="assets/sealed-tls.key"
 export PUBLICKEY_SEALED="assets/sealed-tls.crt"
-export NS_SEALED_SEALED="kube-system"
+export NS_SEALED_SECRETS="kube-system"
 export SECRETNAME_SEALED="sealedkeys"
 
 oc delete secret -n $NS_SEALED_SEALED -l sealedsecrets.bitnami.com/sealed-secrets-key
-oc -n "$NS_SEALED_SEALED" create secret tls "$SECRETNAME_SEALED" --cert="$PUBLICKEY_SEALED" --key="$PRIVATEKEY_SEALED"
-oc -n "$NS_SEALED_SEALED" label secret "$SECRETNAME_SEALED" sealedsecrets.bitnami.com/sealed-secrets-key=active
+oc -n "$NS_SEALED_SECRETS" create secret tls "$SECRETNAME_SEALED" --cert="$PUBLICKEY_SEALED" --key="$PRIVATEKEY_SEALED"
+oc -n "$NS_SEALED_SECRETS" label secret "$SECRETNAME_SEALED" sealedsecrets.bitnami.com/sealed-secrets-key=active
+oc delete pod $(oc get pod -n $NS_SEALED_SECRETS -l name=sealed-secrets-controller | grep sealed-secrets | awk '{ print $1 }')
 sleep 10
 ```
 
