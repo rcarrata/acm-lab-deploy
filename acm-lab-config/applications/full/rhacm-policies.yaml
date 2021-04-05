@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rhacm-policies
+spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: acm-lab-config
+  source:
+    path: manifests/rhacm-policies/base
+    repoURL: https://github.com/ocp-tigers/acm-lab-deploy
+    targetRevision: master
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+  sync:
+    comparedTo:
+      destination:
+        namespace: argocd
+        server: https://kubernetes.default.svc
+      source:
+        path: manifests/rhacm-policies/base
+        repoURL: https://github.com/ocp-tigers/acm-lab-deploy
+        targetRevision: master

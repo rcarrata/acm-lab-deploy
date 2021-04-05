@@ -1,6 +1,6 @@
 # RH ACM Deployment and Configuration 🧙
 
-Repo to deploy and configure an RHACM lab
+Repo to deploy and configure an RHACM lab using GitOps!
 
 ## Installation
 

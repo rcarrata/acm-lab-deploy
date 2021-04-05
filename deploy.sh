@@ -56,4 +56,5 @@ sleep 5
 
 # ACM Deploy the Config for ACM
 echo "## Deployment and Configuration of ACM instance"
-oc apply -k https://github.com/ocp-tigers/acm-lab-deploy/acm-lab-config/config/overlays/default
+echo "## Enabling full mode"
+oc apply -k https://github.com/ocp-tigers/acm-lab-deploy/acm-lab-config/config/overlays/full
