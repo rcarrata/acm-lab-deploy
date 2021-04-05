@@ -33,4 +33,4 @@ You will have installed the following resources:
 
 A quick look of the Operators installed is:
 
-<img align="center" width="550" src="assets/acm-deploy-overview.png">
+<img align="center" width="550" src="assets/acm-deploy-operators.png">
