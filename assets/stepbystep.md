@@ -112,8 +112,22 @@ git push
 
 ### 7. Configure the ACM Lab Resources
 
+Select Mode Default or Full, depending on the resources:
+
+#### 7.1 Select Mode Default (only RHACM)
+
 ```
 oc apply -k https://github.com/ocp-tigers/acm-lab-deploy/acm-lab-config/config/overlays/default
+```
+
+This step will deploy the following resources for the demo:
+
+* RHACM Instance Deployment
+
+#### 7.2 Select Mode Full
+
+```
+oc apply -k https://github.com/ocp-tigers/acm-lab-deploy/acm-lab-config/config/overlays/full
 ```
 
 This step will deploy the following resources for the demo:

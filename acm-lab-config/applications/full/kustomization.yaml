@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- container-security-operator.yaml
+- rhacm-instance.yaml
+- rhacm-observability.yaml
+#- letsencrypt-certs.yaml # TODO: acme.sh not working

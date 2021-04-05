@@ -6,6 +6,11 @@ Repo to deploy and configure an RHACM lab
 
 There are two ways of install this lab, or step by step or in an automatic deployment using a all-in-one script.
 
+### Modes
+
+* Basic: Install only RHACM
+* Full: Install RHACM with Addons (Observability, CSO, OPA, etc)
+
 ### Automatic Deployment
 
 * [Automatic Deployment](./assets/automaticdeploy.md)
@@ -26,10 +31,11 @@ You will have installed the following resources:
 * Dex (for ArgoCD OAuth integration)
 * OAuth Htpasswd Authentication
 * OCP RBAC (Users and Groups)
-* RHACM Operator
 * Sealed Secrets
-* RHACM Observability
-* Container Security Operator
+* RHACM Operator
+* RHACM MultiClusterHub
+* RHACM Observability [full mode]
+* Container Security Operator [full mode]
 
 A quick look of the Operators installed is:
 
