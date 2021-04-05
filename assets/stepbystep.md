@@ -73,7 +73,7 @@ export AWS_DEFAULT_REGION=eu-west-1
 Generate the Thanos Bucket for the Observability in RHACM:
 
 ```
-export S3_BUCKET="obs-thanos"
+export S3_BUCKET="obs-thanos-${RANDOM}"
 aws s3api create-bucket --bucket $S3_BUCKET --region $AWS_DEFAULT_REGION --create-bucket-configuration LocationConstraint=$AWS_DEFAULT_REGION
 export S3_ENDPOINT="s3.$AWS_DEFAULT_REGION.amazonaws.com"
 ```
