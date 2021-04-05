@@ -18,7 +18,7 @@ There are two ways of install this lab, or step by step or in an automatic deplo
 
 After the installation, you will get all the elements of the lab installed using GitOps and Argocd:
 
-<img align="center" width="550" src="acm-deploy-overview.png">
+<img align="center" width="550" src="assets/acm-deploy-overview.png">
 
 You will have installed the following resources:
 
@@ -33,4 +33,4 @@ You will have installed the following resources:
 
 A quick look of the Operators installed is:
 
-<img align="center" width="550" src="acm-deploy-overview.png">
+<img align="center" width="550" src="assets/acm-deploy-overview.png">
