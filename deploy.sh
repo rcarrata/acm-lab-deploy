@@ -1,11 +1,13 @@
 #!/bin/bash
 
+## Envs
 export PRIVATEKEY_SEALED="assets/sealed-tls.key"
 export PUBLICKEY_SEALED="assets/sealed-tls.crt"
 export NS_SEALED_SEALED="kube-system"
 export SECRETNAME_SEALED="sealedkeys"
 
-## Deploy the ArgoCD infrastructure
+## ArgoCD Install & Config
+echo "## Deploy the ArgoCD infrastructure"
 until oc apply -k https://github.com/ocp-tigers/acm-lab-deploy/argocd/install; do sleep 2; done
 sleep 30
 
@@ -17,11 +19,13 @@ while [ `curl -ks -o /dev/null -w "%{http_code}" https://$ARGOCD_ROUTE` != 200 ]
 done
         echo "ArgoCD operator"
 
-## Deploy the ACM Lab resources
+## Deployment of ACM through ArgoCD
+echo "## Deploy the ACM Lab resources"
 oc apply -k acm-lab-deploy/config/overlays/default
 sleep 60
 
-## Regenerate Sealed Secrets with OWN certificates
+## Deployment of Sealed Secrets
+echo "## Regenerate Sealed Secrets with OWN certificates"
 oc delete secret -n $NAMESPACE -l sealedsecrets.bitnami.com/sealed-secrets-key
 oc -n "$NAMESPACE" create secret tls "$SECRETNAME" --cert="$PUBLICKEY" --key="$PRIVATEKEY"
 oc -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-secrets-key=active
@@ -33,6 +37,8 @@ export AWS_ACCESS_KEY_ID=$(echo $AWS_ACCESS_KEY | base64 -d)
 export AWS_SECRET_ACCESS_KEY=$(echo $AWS_SECRET_KEY | base64 -d)
 export AWS_DEFAULT_REGION=eu-west-1
 
+## Deployment of Observability in ACM
+echo "## Deployment of ACM Observability"
 export S3_BUCKET="obs-thanos"
 aws s3api create-bucket --bucket $S3_BUCKET --region $AWS_DEFAULT_REGION --create-bucket-configuration LocationConstraint=$AWS_DEFAULT_REGION
 export S3_ENDPOINT="s3.$AWS_DEFAULT_REGION.amazonaws.com"
@@ -48,4 +54,5 @@ git push
 sleep 5
 
 # ACM Deploy the Config for ACM
+echo "## Deployment and Configuration of ACM instance"
 oc apply -k https://github.com/ocp-tigers/acm-lab-deploy/acm-lab-config/config/overlays/default
