@@ -8,7 +8,7 @@ There are two ways of install this lab, or step by step or in an automatic deplo
 
 ### Modes
 
-* Basic: Install only RHACM
+* Basic: Install only RHACM with RBAC and Sealed Secrets. No Addons installed.
 * Full: Install RHACM with Addons (Observability, CSO, OPA, etc)
 
 ### Automatic Deployment
