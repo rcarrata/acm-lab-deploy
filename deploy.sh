@@ -9,7 +9,7 @@ export SECRETNAME_SEALED="sealedkeys"
 ## ArgoCD Install & Config
 echo "## Deploy the ArgoCD infrastructure"
 until oc apply -k https://github.com/ocp-tigers/acm-lab-deploy/argocd/install; do sleep 2; done
-sleep 30
+sleep 60
 
 ARGOCD_ROUTE=$(oc get route argocd-server -n argocd -o jsonpath='{.spec.host}{"\n"}')
 

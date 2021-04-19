@@ -6,6 +6,8 @@ Repo to deploy and configure an RHACM lab using GitOps!
 
 There are two ways of install this lab, or step by step or in an automatic deployment using a all-in-one script.
 
+NOTE: Fully working in AWS. In the future, other cloud providers will be added.
+
 ### Modes
 
 * Basic: Install only RHACM with RBAC and Sealed Secrets. No Addons installed.
@@ -40,3 +42,13 @@ You will have installed the following resources:
 A quick look of the Operators installed is:
 
 <img align="center" width="550" src="assets/acm-deploy-operators.png">
+
+## TODO:
+
+* Install Tower in OCP
+* Install AWX Operator
+* Install Hashicorp Vault instead of Sealed Secrets
+* Install Gatekeeper with Policies in ACM in managed clusters
+* Install Container Security Operator with Policies in ACM
+* Configure the RBAC for show the ACM RBAC capabilities
+* Prepopulate the ACM with minimal Apps and Policies from the acmdemo repo
