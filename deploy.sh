@@ -29,7 +29,7 @@ echo "## Regenerate Sealed Secrets with OWN certificates"
 oc delete secret -n $NAMESPACE -l sealedsecrets.bitnami.com/sealed-secrets-key
 oc -n "$NAMESPACE" create secret tls "$SECRETNAME" --cert="$PUBLICKEY" --key="$PRIVATEKEY"
 oc -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-secrets-key=active
-oc delete pod $(oc get pod -n kube-system -l name=sealed-secrets-controller | grep sealed-secrets | awk '{ print $1 }')
+oc delete pod $(oc get pod -n kube-system -l name=sealed-secrets-controller | grep sealed-secrets | awk '{ print $1 }') -n kube-system
 sleep 10
 
 export AWS_ACCESS_KEY=$(oc get secret aws-creds -n kube-system -o jsonpath='{.data.aws_access_key_id}')

@@ -49,7 +49,7 @@ export SECRETNAME_SEALED="sealedkeys"
 oc delete secret -n $NS_SEALED_SEALED -l sealedsecrets.bitnami.com/sealed-secrets-key
 oc -n "$NS_SEALED_SECRETS" create secret tls "$SECRETNAME_SEALED" --cert="$PUBLICKEY_SEALED" --key="$PRIVATEKEY_SEALED"
 oc -n "$NS_SEALED_SECRETS" label secret "$SECRETNAME_SEALED" sealedsecrets.bitnami.com/sealed-secrets-key=active
-oc delete pod $(oc get pod -n $NS_SEALED_SECRETS -l name=sealed-secrets-controller | grep sealed-secrets | awk '{ print $1 }')
+oc delete pod $(oc get pod -n $NS_SEALED_SECRETS -l name=sealed-secrets-controller | grep sealed-secrets | awk '{ print $1 }') -n $NS_SEALED_SECRETS
 sleep 20
 ```
 
