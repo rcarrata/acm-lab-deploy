@@ -36,4 +36,4 @@ spec:
         memory: 4Gi
       requests:
         cpu: 250m
-        memory: 1Git
+        memory: 1G

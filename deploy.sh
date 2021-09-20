@@ -8,10 +8,18 @@ export SECRETNAME_SEALED="sealedkeys"
 
 ## ArgoCD Install & Config
 echo "## Deploy the ArgoCD infrastructure"
-until oc apply -k https://github.com/ocp-tigers/acm-lab-deploy/argocd/install; do sleep 2; done
+until oc apply -k bootstrap/; do sleep 2; done
 sleep 60
 
-ARGOCD_ROUTE=$(oc get route argocd-server -n argocd -o jsonpath='{.spec.host}{"\n"}')
+oc patch subscriptions.operators.coreos.com/openshift-gitops-operator -n openshift-operators --type='merge' \
+--patch '{ "spec": { "config": { "env": [ { "name": "DISABLE_DEX", "value": "false" } ] } } }'
+
+oc patch argocd/openshift-gitops -n openshift-gitops --type='merge' \
+--patch='{ "spec": { "dex": { "openShiftOAuth": true } } }'
+
+oc patch cm/argocd-rbac-cm -n openshift-gitops --type=merge -p '{"data":{"policy.default":"role:admin"}}'
+
+ARGOCD_ROUTE=$(oc get route openshift-gitops-server -n openshift-gitops -o jsonpath='{.spec.host}{"\n"}')
 
 while [ `curl -ks -o /dev/null -w "%{http_code}" https://$ARGOCD_ROUTE` != 200 ];do
         echo "waiting for ArgoCD"
@@ -26,9 +34,9 @@ sleep 60
 
 ## Deployment of Sealed Secrets
 echo "## Regenerate Sealed Secrets with OWN certificates"
-oc delete secret -n $NAMESPACE -l sealedsecrets.bitnami.com/sealed-secrets-key
-oc -n "$NAMESPACE" create secret tls "$SECRETNAME" --cert="$PUBLICKEY" --key="$PRIVATEKEY"
-oc -n "$NAMESPACE" label secret "$SECRETNAME" sealedsecrets.bitnami.com/sealed-secrets-key=active
+oc delete secret -n $NS_SEALED_SEALED -l sealedsecrets.bitnami.com/sealed-secrets-key
+oc -n "$NS_SEALED_SEALED" create secret tls "$SECRETNAME" --cert="$PUBLICKEY" --key="$PRIVATEKEY"
+oc -n "$NS_SEALED_SEALED" label secret "$NS_SEALED_SEALED" sealedsecrets.bitnami.com/sealed-secrets-key=active
 oc delete pod $(oc get pod -n kube-system -l name=sealed-secrets-controller | grep sealed-secrets | awk '{ print $1 }') -n kube-system
 sleep 10
 

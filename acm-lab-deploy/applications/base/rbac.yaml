@@ -4,7 +4,7 @@ metadata:
   name: config-rbac
 spec:
   destination:
-    namespace: argocd
+    namespace: openshift-gitops
     server: https://kubernetes.default.svc
   project: acm-lab-deploy
   source:
@@ -18,7 +18,7 @@ spec:
   sync:
     comparedTo:
       destination:
-        namespace: argocd
+        namespace: openshift-gitops
         server: https://kubernetes.default.svc
       source:
         path: manifests/rbac/base

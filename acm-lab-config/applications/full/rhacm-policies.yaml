@@ -4,7 +4,7 @@ metadata:
   name: rhacm-policies
 spec:
   destination:
-    namespace: argocd
+    namespace: openshift-gitops
     server: https://kubernetes.default.svc
   project: acm-lab-config
   source:
@@ -18,7 +18,7 @@ spec:
   sync:
     comparedTo:
       destination:
-        namespace: argocd
+        namespace: openshift-gitops
         server: https://kubernetes.default.svc
       source:
         path: manifests/rhacm-policies/base

@@ -4,7 +4,7 @@ metadata:
   name: rhacm-operator
 spec:
   destination:
-    namespace: argocd
+    namespace: openshift-gitops
     server: https://kubernetes.default.svc
   project: acm-lab-deploy
   source:
@@ -18,7 +18,7 @@ spec:
   sync:
     comparedTo:
       destination:
-        namespace: argocd
+        namespace: openshift-gitops
         server: https://kubernetes.default.svc
       source:
         path: manifests/rhacm-operator/base
