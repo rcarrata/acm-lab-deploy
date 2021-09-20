@@ -4,7 +4,6 @@ metadata:
   name: observability
   namespace: open-cluster-management-observability
 spec:
-  availabilityConfig: High
   imagePullPolicy: Always
   imagePullSecret: pull-secret
   observabilityAddonSpec:
@@ -17,5 +16,4 @@ spec:
     metricObjectStorage:
       key: thanos.yaml
       name: thanos-object-storage
-    statefulSetSize: 10Gi
     statefulSetStorageClass: gp2

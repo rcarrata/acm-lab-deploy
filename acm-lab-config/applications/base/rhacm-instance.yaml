@@ -13,8 +13,8 @@ spec:
     targetRevision: master
   syncPolicy:
     automated:
-      prune: false
-      selfHeal: false
+      prune: true
+      selfHeal: true
   sync:
     comparedTo:
       destination:

@@ -35,8 +35,8 @@ sleep 60
 ## Deployment of Sealed Secrets
 echo "## Regenerate Sealed Secrets with OWN certificates"
 oc delete secret -n $NS_SEALED_SEALED -l sealedsecrets.bitnami.com/sealed-secrets-key
-oc -n "$NS_SEALED_SEALED" create secret tls "$SECRETNAME" --cert="$PUBLICKEY" --key="$PRIVATEKEY"
-oc -n "$NS_SEALED_SEALED" label secret "$NS_SEALED_SEALED" sealedsecrets.bitnami.com/sealed-secrets-key=active
+oc -n "$NS_SEALED_SEALED" create secret tls "$SECRETNAME_SEALED" --cert="$PUBLICKEY_SEALED" --key="$PRIVATEKEY_SEALED"
+oc -n "$NS_SEALED_SEALED" label secret "$SECRETNAME_SEALED" sealedsecrets.bitnami.com/sealed-secrets-key=active
 oc delete pod $(oc get pod -n kube-system -l name=sealed-secrets-controller | grep sealed-secrets | awk '{ print $1 }') -n kube-system
 sleep 10
 
