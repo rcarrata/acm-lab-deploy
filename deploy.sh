@@ -48,7 +48,8 @@ export AWS_DEFAULT_REGION=eu-west-1
 
 ## Deployment of Observability in ACM
 echo "## Deployment of ACM Observability"
-export S3_BUCKET="obs-thanos"
+RAND=$($RANDOM)
+export S3_BUCKET="$RAND-obs-thanos"
 aws s3api create-bucket --bucket $S3_BUCKET --region $AWS_DEFAULT_REGION --create-bucket-configuration LocationConstraint=$AWS_DEFAULT_REGION
 export S3_ENDPOINT="s3.$AWS_DEFAULT_REGION.amazonaws.com"
 envsubst < assets/obs-secret.yaml.tpl > assets/obs-secret.yaml
