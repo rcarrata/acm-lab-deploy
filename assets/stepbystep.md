@@ -1,9 +1,17 @@
 ## Step by Step
 
-### 1. Installing ArgoCD
+### 1. Installing Openshift Pipelines:
 
 ```
-until oc apply -k https://github.com/ocp-tigers/acm-lab-deploy/argocd/install; do sleep 2; done
+until oc apply -k bootstrap/; do sleep 2; done
+
+oc patch subscriptions.operators.coreos.com/openshift-gitops-operator -n openshift-operators --type='merge' \
+--patch '{ "spec": { "config": { "env": [ { "name": "DISABLE_DEX", "value": "false" } ] } } }'
+
+oc patch argocd/openshift-gitops -n openshift-gitops --type='merge' \
+--patch='{ "spec": { "dex": { "openShiftOAuth": true } } }'
+
+oc patch cm/argocd-rbac-cm -n openshift-gitops --type=merge -p '{"data":{"policy.default":"role:admin"}}'
 ```
 
 This step will deploy the following resources for the demo:
