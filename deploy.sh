@@ -17,7 +17,7 @@ oc patch subscriptions.operators.coreos.com/openshift-gitops-operator -n openshi
 oc patch argocd/openshift-gitops -n openshift-gitops --type='merge' \
 --patch='{ "spec": { "dex": { "openShiftOAuth": true } } }'
 
-oc patch cm/argocd-rbac-cm -n openshift-gitops --type=merge -p '{"data":{"policy.default":"role:admin"}}'
+oc patch ArgoCD/openshift-gitops -n openshift-gitops --type=merge -p '{"spec":{"rbac":{"defaultPolicy":"role:admin"}}}'
 
 ARGOCD_ROUTE=$(oc get route openshift-gitops-server -n openshift-gitops -o jsonpath='{.spec.host}{"\n"}')
 
