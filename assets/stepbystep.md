@@ -11,7 +11,8 @@ oc patch subscriptions.operators.coreos.com/openshift-gitops-operator -n openshi
 oc patch argocd/openshift-gitops -n openshift-gitops --type='merge' \
 --patch='{ "spec": { "dex": { "openShiftOAuth": true } } }'
 
-oc patch cm/argocd-rbac-cm -n openshift-gitops --type=merge -p '{"data":{"policy.default":"role:admin"}}'
+oc patch ArgoCD/openshift-gitops -n openshift-gitops --type=merge \
+-p '{"spec":{"rbac":{"defaultPolicy":"role:admin"}}}'
 ```
 
 This step will deploy the following resources for the demo:
