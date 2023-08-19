@@ -42,13 +42,3 @@ You will have installed the following resources:
 A quick look of the Operators installed is:
 
 <img align="center" width="550" src="assets/acm-deploy-operators.png">
-
-## TODO:
-
-* Install Tower in OCP
-* Install AWX Operator
-* Install Hashicorp Vault instead of Sealed Secrets
-* Install Gatekeeper with Policies in ACM in managed clusters
-* Install Container Security Operator with Policies in ACM
-* Configure the RBAC for show the ACM RBAC capabilities
-* Prepopulate the ACM with minimal Apps and Policies from the acmdemo repo
